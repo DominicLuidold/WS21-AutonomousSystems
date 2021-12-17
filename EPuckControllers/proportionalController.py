@@ -7,20 +7,8 @@ for usage with ePuckS5V12.ttm
 """
 import time
 from BasicEPuck.ePuckVRep import EPuckVRep
-
-def calculateMotorValues():
-    """
-    TODO: include parameters
-    :return: (float,float)
-        left and right motor velocity
-    """
-    # maximum velocity = ~2 Rad
-    maxVel = 120 * 3.1415 / 180
-    # TODO: calculate left and right motor velocity
-    velRight = 0
-    velLeft = 0
-
-    return velLeft, velRight
+from Behavior.FollowWallBeavhior import FollowWallBehavior
+from Behavior.ReturnToWallBehavior import ReturnToWallBehavior
 
 
 def main():
@@ -29,7 +17,9 @@ def main():
     robot.enableAllSensors()
     robot.setSensesAllTogether(False)  # we want fast sensing, so set robot to sensing mode where all sensors are sensed
 
-    noDetectionDistance = 0.05 * robot.getS()  # maximum distance that proximity sensors of ePuck may sense
+    noDetectionDistance = 0.5 * robot.getS()  # maximum distance that proximity sensors of ePuck may sense
+
+    behaviors = [ReturnToWallBehavior(), FollowWallBehavior()]
 
     # main sense-act cycle
     while robot.isConnected():
@@ -44,7 +34,14 @@ def main():
         distVector = robot.getProximitySensorValues()
 
         # plan
-        leftMotor, rightMotor = calculateMotorValues()
+        leftMotor = 1
+        rightMotor = 1
+
+        for behavior in behaviors:
+            applicable = behavior.is_applicable(distVector, noDetectionDistance)
+            if applicable:
+                leftMotor, rightMotor = behavior.calculate_motor_value(distVector, noDetectionDistance)
+                break
 
         # act
         robot.setMotorSpeeds(leftMotor, rightMotor)
