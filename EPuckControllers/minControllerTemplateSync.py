@@ -5,7 +5,6 @@ for usage with ePuckS5V12Sync.ttm
 
 @author: hoch ralph
 """
-import time
 from BasicEPuck.ePuckVRep import EPuckVRep
 
 def calculateMotorValues():

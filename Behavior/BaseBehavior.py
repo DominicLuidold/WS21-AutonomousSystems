@@ -1,4 +1,5 @@
 import abc
+from PIL import Image
 
 
 class BaseBehavior:
@@ -8,7 +9,7 @@ class BaseBehavior:
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
-    def is_applicable(self, distances: list, no_detection_distance: int) -> bool:
+    def is_applicable(self, distances: list, no_detection_distance: int, camera_image: Image) -> bool:
         """
         Determines whether a behavior is applicable for the current situation and the given parameters.
 
@@ -17,7 +18,7 @@ class BaseBehavior:
         pass
 
     @abc.abstractmethod
-    def calculate_motor_value(self, distances: list, no_detection_distance: int) -> (float, float):
+    def calculate_motor_value(self, distances: list, no_detection_distance: int, center_of_blob: int) -> (float, float):
         """
         Calculates the required motor velocity for the current behavior.
 

@@ -7,11 +7,12 @@ for usage with ePuckS5V12.ttm
 """
 import time
 from BasicEPuck.ePuckVRep import EPuckVRep
-from PIL import Image as I
+from PIL import Image as imagef
 
 resolX, resolY = 64, 64
 
-def detectBox(image):
+
+def detectBox(image: imagef):
     """
         looks in current image for a black blob on a red background, from left to right
         :param
