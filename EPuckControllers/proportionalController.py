@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-minimal template for BasicEPuck.ePuckVRep
-for usage with ePuckS5V12.ttm
+Proportional controller for BasicEPuck.ePuckVRep for usage with examScene20211209.ttt
+Controller based on minimal template by Ralph Hoch, University of Applied Sciences Vorarlberg
 
-@author: hoch ralph
+@author Yannick Krampl
+@author Dominic Luidold
 """
 import time
 from BasicEPuck.ePuckVRep import EPuckVRep
