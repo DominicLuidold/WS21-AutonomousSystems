@@ -18,7 +18,7 @@ class BaseBehavior:
         pass
 
     @abc.abstractmethod
-    def calculate_motor_value(self, distances: list, no_detection_distance: int, center_of_blob: int) -> (float, float):
+    def calculate_motor_value(self, distances: list, no_detection_distance: int, camera_image: Image) -> (float, float):
         """
         Calculates the required motor velocity for the current behavior.
 

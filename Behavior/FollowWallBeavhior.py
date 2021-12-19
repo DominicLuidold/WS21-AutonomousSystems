@@ -8,7 +8,7 @@ class FollowWallBehavior(BaseBehavior):
     def is_applicable(self, distances: list, no_detection_distance: int, camera_image: Image) -> bool:
         return distances[2] < 0.05
 
-    def calculate_motor_value(self, distances: list, no_detection_distance: int, center_of_blob: int) -> (float, float):
+    def calculate_motor_value(self, distances: list, no_detection_distance: int, camera_image: Image) -> (float, float):
         # Initial values
         vel_left = 1
         vel_right = 1
