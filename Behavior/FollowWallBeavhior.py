@@ -19,7 +19,7 @@ class FollowWallBehavior(BaseBehavior):
         vel_right = vel_right + (1 - (distances[2] / no_detection_distance)) * -0.6
 
         # Counter-steer additionally if wall in front is detected
-        vel_left = vel_left + (1 - (distances[4] / no_detection_distance)) * 0.6
-        vel_right = vel_right + (1 - (distances[4] / no_detection_distance)) * -0.4
+        vel_left = vel_left + (1 - (distances[3] / no_detection_distance)) * 1.6
+        vel_right = vel_right + (1 - (distances[3] / no_detection_distance)) * -1.5
 
         return vel_left, vel_right

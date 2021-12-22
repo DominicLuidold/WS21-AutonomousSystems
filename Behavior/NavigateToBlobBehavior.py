@@ -9,7 +9,12 @@ class NavigateToBlobBehavior(BaseBehavior):
     def is_applicable(self, distances: list, no_detection_distance: int, camera_image: Image) -> bool:
         blob_detected, center_of_blob = self.__detect_box(camera_image)
 
-        return not (blob_detected and (distances[3] < 0.05 and distances[4] < 0.05))
+        if blob_detected and distances[2] >= 0.05 and distances[3] >= 0.05:
+            return True
+        if distances[1] < 0.05 or distances[2] < 0.05 or distances[3] < 0.05:
+            return False
+        else:
+            return True
 
     def calculate_motor_value(self, distances: list, no_detection_distance: int, camera_image: Image) -> (float, float):
         # Initial values
